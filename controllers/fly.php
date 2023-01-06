@@ -51,7 +51,8 @@ if (Input::exists()) {
                         $message,
                         $subject,
                         $receivers,
-                        $from
+                        $from,
+                        true,
                     );
                     // foreach ($receivers as $email) {
                     //     if (Helpers::isEmail($email)) {
