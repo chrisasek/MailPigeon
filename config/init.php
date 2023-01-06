@@ -2,6 +2,7 @@
 session_start();
 
 require_once('consts.php');
+require SITE_ROOT . '/vendor/autoload.php';
 
 // show all errors for now
 error_reporting(E_ALL);

@@ -1,0 +1,7 @@
+{
+    "name": "chrisasek/mail-pigeon",
+    "type": "project",
+    "require": {
+        "phpmailer/phpmailer": "^6.7"
+    }
+}
