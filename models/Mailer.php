@@ -47,11 +47,12 @@ class Mailer extends PHPMailer
         $message,
         $subject,
         $to = array('email' => 'chrisasek@gmail.com', 'first_name' => 'Chris', 'last_name' => 'Asek'),
-        $from = array('email' => 'contact@stakepadi.com', 'name' => 'Stakepadi')
+        $from = array('email' => 'contact@stakepadi.com', 'name' => 'Chrisasek from Stakepadi'),
+        $is_multiple_to = false
     ) {
         // Fetch template
         // $template = file_get_contents('../assets/templates/email.html');
-        $template = file_get_contents(SITE_ROOT.'/assets/templates/email.html');
+        $template = file_get_contents(SITE_ROOT . '/assets/templates/email.html');
         $message = str_replace('[message]', $message, trim($template));
 
         //Set a default 'From' address
@@ -61,8 +62,15 @@ class Mailer extends PHPMailer
 
         // Set Subject 
         $this->Subject = $subject;
-        $to_name = isset($to['name']) ? $to['name'] : $to['first_name'] . ' ' . $to['last_name'];
-        $this->addAddress($to['email'], $to_name);
+        if ($is_multiple_to) {
+            foreach ($to as $to_add) {
+                $this->addAddress($to_add);
+            }
+        } else {
+            $to_name = isset($to['name']) ? $to['name'] : $to['first_name'] . ' ' . $to['last_name'];
+            $this->addAddress($to['email'], $to_name);
+        }
+
         // $this->addBCC($to['email'], $to_name);
         //Set an HTML and plain-text message, import relative image references
         $this->msgHTML($message, './assets/images/');

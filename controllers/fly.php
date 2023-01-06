@@ -46,23 +46,32 @@ if (Input::exists()) {
                 $receivers = explode(',', trim(Input::get('receivers')));
                 $message = trim(Input::get('message'));
 
-                foreach ($receivers as $email) {
-                    if (Helpers::isEmail($email)) {
-                        // Messages::send($message, $subject, $email, $email, $from, true);
-                        $Mailer->sendMessage(
-                            $message,
-                            $subject,
-                            array(
-                                'email' => $email,
-                                'name' => $email,
-                            ),
-                            $from
-                        );
-                    }
+                if ($receivers) {
+                    $Mailer->sendMessage(
+                        $message,
+                        $subject,
+                        $receivers,
+                        $from
+                    );
+                    // foreach ($receivers as $email) {
+                    //     if (Helpers::isEmail($email)) {
+                    //         // Messages::send($message, $subject, $email, $email, $from, true);
+                    //         $Mailer->sendMessage(
+                    //             $message,
+                    //             $subject,
+                    //             array(
+                    //                 'email' => $email,
+                    //                 'name' => $email,
+                    //             ),
+                    //             $from
+                    //         );
+                    //     }
+                    // }
+
+                    Session::delete('form_data');
+                    Session::put('success', "Sent Successfully");
                 }
 
-                Session::delete('form_data');
-                Session::put('success', "Sent Successfully");
                 Redirect::to_js('../');
             } catch (Exception $e) {
                 Session::flash('error', $e->getMessage());

@@ -24,9 +24,9 @@ Alerts::displaySuccess();
                             <div class="col-md-12 form-group">
                                 <label for="from_name" class="form-label">From</label>
                                 <div class="input-group">
-                                    <span class="input-group-text">Text</span>
+                                    <span class="input-group-text">Name</span>
                                     <input type="text" name="from_name" value="<?= $form_data ? $form_data['from_name'] : null; ?>" class="form-control" placeholder="Favour from Mail Pigeon" aria-label="text" required>
-                                    <span class="input-group-text">Link</span>
+                                    <span class="input-group-text">Email</span>
                                     <input type="text" name="from_email" value="<?= $form_data ? $form_data['from_email'] : null; ?>" class="form-control" placeholder="favour@mailpigeon.com" aria-label="link" required>
                                 </div>
                             </div>

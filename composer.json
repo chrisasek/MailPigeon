@@ -1,6 +1,11 @@
 {
     "name": "chrisasek/mail-pigeon",
     "type": "project",
+    "autoload": {
+        "psr-4": {
+            "": "models/"
+        }
+    },
     "require": {
         "phpmailer/phpmailer": "^6.7"
     }
